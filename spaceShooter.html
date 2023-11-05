@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top-Down Shooter Game</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: radial-gradient(circle, rgba(21,32,43,1) 0%, rgba(25,39,52,1) 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        canvas {
+            border: 5px solid #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <canvas id="gameCanvas"></canvas>
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = 600;
+        canvas.height = 600;
+
+        let player = {
+            x: canvas.width / 2 - 15,
+            y: canvas.height / 2 - 15,
+            width: 30,
+            height: 30,
+            color: '#00ff00'
+        };
+
+        let bullets = [];
+        let enemies = [];
+        let enemySpeed = 1;
+        let specialAttackReady = true;
+        let mouse = {
+            x: canvas.width / 2,
+            y: canvas.height / 2
+        };
+
+        function drawPlayer() {
+            ctx.fillStyle = player.color;
+            ctx.fillRect(player.x, player.y, player.width, player.height);
+        }
+
+        function updatePlayerPosition() {
+            player.x = mouse.x - player.width / 2;
+            player.y = mouse.y - player.height / 2;
+        }
+
+        function drawBullets() {
+            bullets.forEach((bullet, index) => {
+                ctx.fillStyle = '#ffff00';
+                ctx.fillRect(bullet.x, bullet.y, bullet.size, bullet.size);
+                bullet.x += bullet.speed * Math.cos(bullet.angle);
+                bullet.y += bullet.speed * Math.sin(bullet.angle);
+
+                if (bullet.x < 0 || bullet.y < 0 || bullet.x > canvas.width || bullet.y > canvas.height) {
+                    bullets.splice(index, 1);
+                }
+            });
+        }
+
+        function spawnEnemy() {
+            let side = Math.floor(Math.random() * 4);
+            let x, y;
+            switch(side) {
+                case 0: // Top
+                    x = Math.random() * canvas.width;
+                    y = -30;
+                    break;
+                case 1: // Right
+                    x = canvas.width + 30;
+                    y = Math.random() * canvas.height;
+                    break;
+                case 2: // Bottom
+                    x = Math.random() * canvas.width;
+                    y = canvas.height + 30;
+                    break;
+                case 3: // Left
+                    x = -30;
+                    y = Math.random() * canvas.height;
+                    break;
+            }
+            enemies.push({ x, y, width: 30, height: 30, color: '#ff0000', speed: enemySpeed });
+        }
+
+        function drawEnemies() {
+            enemies.forEach((enemy, index) => {
+                ctx.fillStyle = enemy.color;
+                ctx.fillRect(enemy.x, enemy.y, enemy.width, enemy.height);
+
+                let angle = Math.atan2(player.y - enemy.y, player.x - enemy.x);
+                enemy.x += enemy.speed * Math.cos(angle);
+                enemy.y += enemy.speed * Math.sin(angle);
+
+                if (player.x < enemy.x + enemy.width &&
+                    player.x + player.width > enemy.x &&
+                    player.y < enemy.y + enemy.height &&
+                    player.y + player.height > enemy.y) {
+                    // End game or decrease player life
+                }
+
+                bullets.forEach((bullet, bIndex) => {
+                    if (bullet.x < enemy.x + enemy.width &&
+                        bullet.x + bullet.size > enemy.x &&
+                        bullet.y < enemy.y + enemy.height &&
+                        bullet.y + bullet.size > enemy.y) {
+                        enemies.splice(index, 1);
+                        bullets.splice(bIndex, 1);
+                    }
+                });
+            });
+        }
+
+        canvas.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX - canvas.getBoundingClientRect().left;
+            mouse.y = e.clientY - canvas.getBoundingClientRect().top;
+        });
+
+        canvas.addEventListener('mousedown', (e) => {
+            if (e.button === 0) {
+                let angle = Math.atan2(e.clientY - canvas.offsetTop - player.y, e.clientX - canvas.offsetLeft - player.x);
+                bullets.push({ x: player.x + player.width / 2, y: player.y + player.height / 2, size: 5, speed: 5, angle: angle });
+            } else if (e.button === 2 && specialAttackReady) {
+                // Perform special attack
+                specialAttackReady = false;
+                setTimeout(() => {
+                    specialAttackReady = true;
+                }, 10000); // 10 second cooldown
+            }
+        });
+
+        function gameLoop(timestamp) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            drawPlayer();
+            updatePlayerPosition();
+            drawBullets();
+            drawEnemies();
+
+            if (enemies.length < 100) {
+                if (Math.random() < 0.1) { // 10% chance to spawn an enemy each frame
+                    spawnEnemy();
+                }
+            }
+
+            requestAnimationFrame(gameLoop);
+        }
+
+        requestAnimationFrame(gameLoop);
+
+        // Prevent context menu from showing on right click
+        canvas.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+        });
+    </script>
+</body>
+</html>

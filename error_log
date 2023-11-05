@@ -1,0 +1,21 @@
+[02-Nov-2023 04:03:02 UTC] PHP Parse error:  syntax error, unexpected identifier "Arial" in /home2/dicelady/public_html/AdventureGame/buildgame.php on line 11
+[02-Nov-2023 04:07:08 UTC] PHP Parse error:  syntax error, unexpected identifier "magic" in /home2/dicelady/public_html/AdventureGame/buildgame.php on line 87
+[02-Nov-2023 15:07:56 UTC] PHP Warning:  Undefined array key "scene_item_name" in /home2/dicelady/public_html/AdventureGame/scengen.php on line 80
+[02-Nov-2023 15:07:56 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in /home2/dicelady/public_html/AdventureGame/scengen.php on line 80
+[02-Nov-2023 15:07:56 UTC] PHP Warning:  Undefined array key "scene_furniture_name" in /home2/dicelady/public_html/AdventureGame/scengen.php on line 87
+[02-Nov-2023 15:07:56 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in /home2/dicelady/public_html/AdventureGame/scengen.php on line 87
+[02-Nov-2023 15:07:56 UTC] PHP Warning:  Undefined array key "scene_option_description" in /home2/dicelady/public_html/AdventureGame/scengen.php on line 94
+[02-Nov-2023 15:07:56 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in /home2/dicelady/public_html/AdventureGame/scengen.php on line 94
+[02-Nov-2023 15:08:13 UTC] PHP Warning:  Undefined array key "scene_item_name" in /home2/dicelady/public_html/AdventureGame/scengen.php on line 80
+[02-Nov-2023 15:08:13 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in /home2/dicelady/public_html/AdventureGame/scengen.php on line 80
+[02-Nov-2023 15:08:13 UTC] PHP Warning:  Undefined array key "scene_furniture_name" in /home2/dicelady/public_html/AdventureGame/scengen.php on line 87
+[02-Nov-2023 15:08:13 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in /home2/dicelady/public_html/AdventureGame/scengen.php on line 87
+[02-Nov-2023 15:08:13 UTC] PHP Warning:  Undefined array key "scene_option_description" in /home2/dicelady/public_html/AdventureGame/scengen.php on line 94
+[02-Nov-2023 15:08:13 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in /home2/dicelady/public_html/AdventureGame/scengen.php on line 94
+[02-Nov-2023 15:16:13 UTC] PHP Warning:  Undefined array key "sceneCounter" in /home2/dicelady/public_html/AdventureGame/scengen.php on line 7
+[03-Nov-2023 03:50:42 UTC] PHP Parse error:  syntax error, unexpected identifier "t", expecting ")" in /home2/dicelady/public_html/AdventureGame/UploadAdventure.php on line 114
+[03-Nov-2023 03:50:44 UTC] PHP Parse error:  syntax error, unexpected identifier "t", expecting ")" in /home2/dicelady/public_html/AdventureGame/UploadAdventure.php on line 114
+[03-Nov-2023 16:01:17 UTC] PHP Warning:  Undefined array key "jsonOutput" in /home2/dicelady/public_html/AdventureGame/AdventureGen.php on line 32
+[03-Nov-2023 16:01:56 UTC] PHP Warning:  Undefined array key "jsonOutput" in /home2/dicelady/public_html/AdventureGame/AdventureGen.php on line 32
+[03-Nov-2023 16:03:04 UTC] PHP Warning:  Undefined array key "jsonOutput" in /home2/dicelady/public_html/AdventureGame/AdventureGen.php on line 32
+[03-Nov-2023 16:38:57 UTC] PHP Warning:  Undefined array key "jsonOutput" in /home2/dicelady/public_html/AdventureGame/AdventureGen.php on line 32

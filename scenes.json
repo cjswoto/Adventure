@@ -1,0 +1,88 @@
+{
+    "scenes": [
+        {
+            "id": 1,
+            "name": "Exterior",
+            "description": "You stand before the weathered stone walls of an abandoned keep, overtaken by moss and vines. The surrounding landscape is murky with thick fog covering the swamp. Dead trees with hanging moss and swampy pools surround the keep. The main gate creaks with the swamp's breezes.",
+            "image": "exterior.jpg",
+            "options": [
+                {
+                    "description": "Enter the keep",
+                    "target": 2
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Entrance Hall",
+            "description": "You step into a grand but now decrepit hall. Tattered banners hang on the walls, and a thick layer of dust covers the floor.",
+            "image": "entrance_hall.jpg",
+            "options": [
+                {
+                    "description": "Go to the Guard Room",
+                    "target": 3
+                },
+                {
+                    "description": "Proceed to the Kitchen and Storage",
+                    "target": 4
+                },
+                {
+                    "description": "Head upstairs to the Living Quarters",
+                    "target": 5
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "name": "Guard Room",
+            "description": "This room, once watched by guards, is filled with old, rusted armor and weapons.",
+            "image": "guard_room.jpg",
+            "options": [
+                {
+                    "description": "Return to the Entrance Hall",
+                    "target": 2
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "name": "Kitchen and Storage",
+            "description": "You find a large kitchen and storage area, where rotting wooden crates and barrels are scattered.",
+            "image": "kitchen.jpg",
+            "options": [
+                {
+                    "description": "Return to the Entrance Hall",
+                    "target": 2
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "name": "Living Quarters",
+            "description": "You walk into rooms filled with rotten furniture and cobwebs, a remnant of the inhabitants who once lived here.",
+            "image": "living_quarters.jpg",
+            "options": [
+                {
+                    "description": "Explore the Library",
+                    "target": 6
+                },
+                {
+                    "description": "Return to the Entrance Hall",
+                    "target": 2
+                }
+            ]
+        },
+        {
+            "id": 6,
+            "name": "Library",
+            "description": "A room filled with moldy books, scrolls, and old maps. Some knowledge might still be salvaged from here.",
+            "image": "library.jpg",
+            "options": [
+                {
+                    "description": "Return to the Living Quarters",
+                    "target": 5
+                }
+            ]
+        }
+    ]
+}

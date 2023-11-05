@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top-Down Shooter Game with Touch Controls</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: radial-gradient(circle, rgba(21,32,43,1) 0%, rgba(25,39,52,1) 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        canvas {
+            border: 5px solid #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+        .controls {
+            position: fixed;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+        }
+        .control-button {
+            width: 60px;
+            height: 60px;
+            background-color: #fff;
+            display: inline-block;
+            margin: 5px;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            line-height: 60px;
+            text-align: center;
+            font-size: 24px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="gameCanvas"></canvas>
+    <div class="controls">
+        <div class="control-button" id="moveUp">↑</div>
+        <div class="control-button" id="moveLeft">←</div>
+        <div class="control-button" id="moveRight">→</div>
+        <div class="control-button" id="moveDown">↓</div>
+    </div>
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = 800;
+        canvas.height = 600;
+
+        let player = {
+            x: canvas.width / 2,
+            y: canvas.height / 2,
+            width: 50,
+            height: 50,
+            color: 'green',
+            speed: 5,
+            shooting: false,
+            hasShield: true
+        };
+
+        let bullets = [];
+        let enemies = [];
+        let enemySpeed = 1;
+        let mouse = {
+            x: canvas.width / 2,
+            y: canvas.height / 2
+        };
+
+        function shootBullet() {
+            const angle = Math.atan2(mouse.y - player.y, mouse.x - player.x);
+            const velocity = {
+                x: Math.cos(angle) * 10,
+                y: Math.sin(angle) * 10
+            };
+            bullets.push({
+                x: player.x + player.width / 2,
+                y: player.y + player.height / 2,
+                width: 10,
+                height: 10,
+                color: 'yellow',
+                velocity: velocity
+            });
+        }
+
+        function handleTouchControls() {
+            document.getElementById('moveUp').addEventListener('touchstart', () => player.y -= player.speed);
+            document.getElementById('moveDown').addEventListener('touchstart', () => player.y += player.speed);
+            document.getElementById('moveLeft').addEventListener('touchstart', () => player.x -= player.speed);
+            document.getElementById('moveRight').addEventListener('touchstart', () => player.x += player.speed);
+        }
+
+        canvas.addEventListener('mousedown', () => player.shooting = true);
+        canvas.addEventListener('mouseup', () => player.shooting = false);
+        canvas.addEventListener('mouseleave', () => player.shooting = false);
+
+        canvas.addEventListener('mousemove', function(event) {
+            mouse.x = event.clientX - canvas.getBoundingClientRect().left;
+            mouse.y = event.clientY - canvas.getBoundingClientRect().top;
+        });
+
+        canvas.addEventListener('touchmove', function(event) {
+            mouse.x = event.touches[0].clientX - canvas.getBoundingClientRect().left;
+            mouse.y = event.touches[0].clientY - canvas.getBoundingClientRect().top;
+            player.shooting = true;
+            event.preventDefault();
+        });
+
+        canvas.addEventListener('touchend', function(event) {
+            player.shooting = false;
+        });
+
+        function spawnEnemies() {
+            setInterval(() => {
+                const size = 30;
+                const x = Math.random() < 0.5 ? 0 - size : canvas.width + size;
+                const y = Math.random() < 0.5 ? 0 - size : canvas.height + size;
+                const color = 'red';
+                const angle = Math.atan2(player.y - y, player.x - x);
+                const velocity = {
+                    x: Math.cos(angle) * enemySpeed,
+                    y: Math.sin(angle) * enemySpeed
+                };
+                enemies.push({
+                    x, y, width: size, height: size, color, velocity
+                });
+            }, 1000);
+        }
+
+        function drawPlayer() {
+            ctx.fillStyle = player.color;
+            ctx.fillRect(player.x, player.y, player.width, player.height);
+        }
+
+        function drawBullets() {
+            bullets.forEach((bullet, index) => {
+                ctx.fillStyle = bullet.color;
+                ctx.fillRect(bullet.x, bullet.y, bullet.width, bullet.height);
+                bullet.x += bullet.velocity.x;
+                bullet.y += bullet.velocity.y;
+
+                if (bullet.x + bullet.width < 0 || bullet.x > canvas.width || bullet.y + bullet.height < 0 || bullet.y > canvas.height) {
+                    bullets.splice(index, 1);
+                }
+            });
+        }
+
+        function drawEnemies() {
+            enemies.forEach((enemy, index) => {
+                ctx.fillStyle = enemy.color;
+                ctx.fillRect(enemy.x, enemy.y, enemy.width, enemy.height);
+                enemy.x += enemy.velocity.x;
+                enemy.y += enemy.velocity.y;
+
+                if (enemy.x < player.x + player.width &&
+                    enemy.x + enemy.width > player.x &&
+                    enemy.y < player.y + player.height &&
+                    enemy.y + enemy.height > player.y) {
+                    if (player.hasShield) {
+                        player.hasShield = false;
+                        enemies.splice(index, 1);
+                    } else {
+                        clearInterval(gameInterval);
+                        alert('Game Over!');
+                        window.location.reload();
+                    }
+                }
+
+                bullets.forEach((bullet, bulletIndex) => {
+                    if (bullet.x < enemy.x + enemy.width &&
+                        bullet.x + bullet.width > enemy.x &&
+                        bullet.y < enemy.y + enemy.height &&
+                        bullet.y + bullet.height > enemy.y) {
+                        enemies.splice(index, 1);
+                        bullets.splice(bulletIndex, 1);
+                    }
+                });
+            });
+        }
+
+        function update() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawPlayer();
+            drawBullets();
+            drawEnemies();
+            if (player.shooting) {
+                shootBullet();
+            }
+        }
+
+        let gameInterval = setInterval(update, 1000 / 60);
+        spawnEnemies();
+        handleTouchControls();
+    </script>
+</body>
+</html>

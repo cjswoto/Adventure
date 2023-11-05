@@ -1,0 +1,386 @@
+{
+    "scenes": [
+        {
+            "name": "The Azure Lounge",
+            "description": "You stand in a spacious lounge bathed in shades of azure. Plush seating and abstract art fill the room, creating a tranquil atmosphere. The scent of old books drifts in from the east, and a warm, earthy aroma beckons from the south.",
+            "image": "azure_lounge.jpg",
+            "items": [
+                {"name": "antique vase", "image": "antique_vase.jpg"},
+                {"name": "painting of a ship", "image": "ship_painting.jpg"}
+            ],
+            "furniture": [
+                {"name": "velvet sofa", "image": "velvet_sofa.jpg"},
+                {"name": "glass coffee table", "image": "glass_coffee_table.jpg"}
+            ],
+            "options": [
+                {
+                    "description": "Go east to The Grand Library.",
+                    "target": 1
+                },
+                {
+                    "description": "Go south to The Conservatory.",
+                    "target": 4
+                }
+            ]
+        },
+        {
+            "name": "The Grand Library",
+            "description": "Books from floor to ceiling, the grand library exudes wisdom and age. Ladders slide along the shelves, and a large globe sits in the center. Passages lead to the west, east, and south.",
+            "image": "grand_library.jpg",
+            "items": [
+                {"name": "leather-bound book", "image": "leather_book.jpg"},
+                {"name": "antique globe", "image": "antique_globe.jpg"}
+            ],
+            "furniture": [
+                {"name": "mahogany bookshelves", "image": "bookshelves.jpg"},
+                {"name": "reading table", "image": "reading_table.jpg"}
+            ],
+            "options": [
+                {
+                    "description": "Go west to The Azure Lounge.",
+                    "target": 0
+                },
+                {
+                    "description": "Go east to The Silent Gallery.",
+                    "target": 2
+                },
+                {
+                    "description": "Go south to The Dining Hall.",
+                    "target": 5
+                }
+            ]
+        },
+        {
+            "name": "The Silent Gallery",
+            "description": "The gallery is quiet, the walls adorned with monochrome photographs and paintings. Soft lighting highlights each piece. Doorways lead west and south.",
+            "image": "silent_gallery.jpg",
+            "items": [
+                {"name": "framed photograph", "image": "framed_photograph.jpg"},
+                {"name": "sculpture", "image": "sculpture.jpg"}
+            ],
+            "furniture": [
+                {"name": "bench", "image": "bench.jpg"}
+            ],
+            "options": [
+                {
+                    "description": "Go west to The Grand Library.",
+                    "target": 1
+                },
+                {
+                    "description": "Go south to The Game Room.",
+                    "target": 6
+                }
+            ]
+        },
+        {
+            "name": "The Sunroom",
+            "description": "A radiant room filled with sunlight, lush plants, and comfortable seating. Large windows offer a view of the sky, and the only exit leads south.",
+            "image": "sunroom.jpg",
+            "items": [
+                {"name": "potted fern", "image": "potted_fern.jpg"},
+                {"name": "sun hat", "image": "sun_hat.jpg"}
+            ],
+            "furniture": [
+                {"name": "rattan lounge chair", "image": "rattan_lounge_chair.jpg"}
+            ],
+            "options": [
+                {
+                    "description": "Go south to The Observatory.",
+                    "target": 7
+                }
+            ]
+        },
+        {
+            "name": "The Conservatory",
+            "description": "Surrounded by glass walls, the conservatory houses exotic plants and flowers. A small fountain murmurs in the background. Doors lead north, east, and south.",
+            "image": "conservatory.jpg",
+            "items": [
+                {"name": "orchid", "image": "orchid.jpg"},
+                {"name": "bonsai tree", "image": "bonsai_tree.jpg"}
+            ],
+            "furniture": [
+                {"name": "wrought iron bench", "image": "iron_bench.jpg"}
+            ],
+            "options": [
+                {
+                    "description": "Go north to The Azure Lounge.",
+                    "target": 0
+                },
+                {
+                    "description": "Go east to The Dining Hall.",
+                    "target": 5
+                },
+                {
+                    "description": "Go south to The Stone Garden.",
+                    "target": 8
+                }
+            ]
+        },
+        {
+            "name": "The Dining Hall",
+            "description": "A grand hall with a long table set for a feast. Paintings of bountiful harvests cover the walls. There are exits to the west, north, and south.",
+            "image": "dining_hall.jpg",
+            "items": [
+                {"name": "silver candelabra", "image": "silver_candelabra.jpg"},
+                {"name": "crystal goblet", "image": "crystal_goblet.jpg"}
+            ],
+            "furniture": [
+                {"name": "oak dining table", "image": "dining_table.jpg"},
+                {"name": "carved wooden chair", "image": "wooden_chair.jpg"}
+            ],
+            "options": [
+                {
+                    "description": "Go west to The Conservatory.",
+                    "target": 4
+                },
+                {
+                    "description": "Go north to The Grand Library.",
+                    "target": 1
+                },
+                {
+                    "description": "Go south to The Wine Cellar.",
+                    "target": 9
+                }
+            ]
+        }
+,
+    {
+      "name": "The Observatory",
+      "description": "You stand in The Observatory, surrounded by telescopes and star charts. The room smells of old books and the vast universe seems within your grasp.",
+      "image": "observatory.jpg",
+      "items": [
+        {"name": "star chart", "image": "star_chart.jpg"},
+        {"name": "telescope", "image": "telescope.jpg"}
+      ],
+      "furniture": [
+        {"name": "bookshelf", "image": "bookshelf.jpg"},
+        {"name": "astronomer's desk", "image": "desk.jpg"}
+      ],
+      "options": [
+        {
+          "description": "Go north to The Sunroom.",
+          "target": 3
+        },
+        {
+          "description": "Go south to The Secret Study.",
+          "target": 11
+        }
+      ]
+    },
+    {
+      "name": "The Workshop",
+      "description": "The Workshop is cluttered with tools and unfinished projects. The scent of sawdust and oil permeates the air, a testament to the many hours of craftsmanship spent here.",
+      "image": "workshop.jpg",
+      "items": [
+        {"name": "hammer", "image": "hammer.jpg"},
+        {"name": "saw", "image": "saw.jpg"}
+      ],
+      "furniture": [
+        {"name": "workbench", "image": "workbench.jpg"},
+        {"name": "tool rack", "image": "tool_rack.jpg"}
+      ],
+      "options": [
+        {
+          "description": "Go north to The Conservatory.",
+          "target": 4
+        },
+        {
+          "description": "Go east to The Armory.",
+          "target": 9
+        }
+      ]
+    },
+    {
+      "name": "The Armory",
+      "description": "The Armory's walls are lined with ancient weaponry and armor. The air holds an iron tang, and each piece tells a story of battles long past.",
+      "image": "armory.jpg",
+      "items": [
+        {"name": "sword", "image": "sword.jpg"},
+        {"name": "shield", "image": "shield.jpg"}
+      ],
+      "furniture": [
+        {"name": "armor stand", "image": "armor_stand.jpg"},
+        {"name": "weapon rack", "image": "weapon_rack.jpg"}
+      ],
+      "options": [
+        {
+          "description": "Go west to The Workshop.",
+          "target": 8
+        },
+        {
+          "description": "Go east to The Zen Garden.",
+          "target": 10
+        },
+        {
+          "description": "Go north to The Dining Hall.",
+          "target": 5
+        }
+      ]
+    },
+    {
+      "name": "The Zen Garden",
+      "description": "The Zen Garden is a tranquil space of raked sand and precisely placed stones. The gentle trickle of a bamboo water feature invites contemplation.",
+      "image": "zen_garden.jpg",
+      "items": [
+        {"name": "raked sand", "image": "raked_sand.jpg"},
+        {"name": "pruned bonsai", "image": "bonsai.jpg"}
+      ],
+      "furniture": [
+        {"name": "stone bench", "image": "stone_bench.jpg"},
+        {"name": "water feature", "image": "water_feature.jpg"}
+      ],
+      "options": [
+        {
+          "description": "Go west to The Armory.",
+          "target": 9
+        },
+        {
+          "description": "Go south to The Secret Study (accessible via Zen Garden).",
+          "target": 14
+        },
+        {
+          "description": "Go north to The Game Room.",
+          "target": 6
+        }
+      ]
+    },
+    {
+      "name": "The Secret Study",
+      "description": "This Secret Study is a haven for the intellectually curious, filled with obscure texts and mysterious artifacts.",
+      "image": "secret_study.jpg",
+      "items": [
+        {"name": "ancient manuscript", "image": "manuscript.jpg"},
+        {"name": "crystal skull", "image": "crystal_skull.jpg"}
+      ],
+      "furniture": [
+        {"name": "study desk", "image": "study_desk.jpg"},
+        {"name": "bookcases", "image": "bookcases.jpg"}
+      ],
+      "options": [
+        {
+          "description": "Go north to The Observatory.",
+          "target": 7
+        },
+        {
+          "description": "Go east to The Secret Study (accessible via Zen Garden).",
+          "target": 12
+        }
+      ]
+    },
+    {
+      "name": "The Game Room",
+      "description": "The Game Room is alive with the sounds of laughter and competition. Various gaming tables and paraphernalia offer a respite from adventure.",
+      "image": "game_room.jpg",
+      "items": [
+        {"name": "deck of cards", "image": "cards.jpg"},
+        {"name": "pool cues", "image": "pool_cues.jpg"}
+      ],
+      "furniture": [
+        {"name": "pool table", "image": "pool_table.jpg"},
+        {"name": "card table", "image": "card_table.jpg"}
+      ],
+      "options": [
+        {
+          "description": "Go south to The Zen Garden.",
+          "target": 10
+        },
+        {
+          "description": "Go east to The Gallery.",
+          "target": 13
+        }
+      ]
+    }
+,
+        {
+            "name": "The Vault",
+            "description": "The air is cool and metallic here in the Vault, surrounded by thick walls and a heavy door that lies ajar to the east.",
+            "image": "vault.jpg",
+            "items": [
+                {"name": "coin", "image": "coin.jpg"},
+                {"name": "gemstone", "image": "gemstone.jpg"},
+                {"name": "ancient manuscript", "image": "manuscript.jpg"}
+            ],
+            "furniture": [
+                {"name": "safe", "image": "safe.jpg"},
+                {"name": "vault door", "image": "vault_door.jpg"}
+            ],
+            "options": [
+                {
+                    "description": "Go east to The Alchemy Lab.",
+                    "target": 13
+                }
+            ]
+        },
+        {
+            "name": "The Alchemy Lab",
+            "description": "Bubbling potions and mystical symbols abound in the Alchemy Lab. Exits lead west back to The Vault and south to The Enchanted Chamber.",
+            "image": "alchemy_lab.jpg",
+            "items": [
+                {"name": "potion", "image": "potion.jpg"},
+                {"name": "alchemy book", "image": "alchemy_book.jpg"},
+                {"name": "crystal", "image": "crystal.jpg"}
+            ],
+            "furniture": [
+                {"name": "alchemy table", "image": "alchemy_table.jpg"},
+                {"name": "bookshelf", "image": "bookshelf.jpg"}
+            ],
+            "options": [
+                {
+                    "description": "Go west to The Vault.",
+                    "target": 12
+                },
+                {
+                    "description": "Go south to The Enchanted Chamber.",
+                    "target": 15
+                }
+            ]
+        },
+        {
+            "name": "The Secret Study (accessible via Zen Garden)",
+            "description": "Secrets of the past whisper from the book-laden shelves of this hidden study. A hidden door leads south to The Enchanted Chamber, another west to The Secret Study.",
+            "image": "secret_study_zen_garden.jpg",
+            "items": [
+                {"name": "sealed letter", "image": "sealed_letter.jpg"},
+                {"name": "old map", "image": "old_map.jpg"}
+            ],
+            "furniture": [
+                {"name": "study desk", "image": "study_desk.jpg"},
+                {"name": "chair", "image": "chair.jpg"}
+            ],
+            "options": [
+                {
+                    "description": "Go north to The Zen Garden.",
+                    "target": 10
+                },
+                {
+                    "description": "Go west to The Secret Study.",
+                    "target": 11
+                },
+                {
+                    "description": "Go south to The Enchanted Chamber.",
+                    "target": 15
+                }
+            ]
+        },
+        {
+            "name": "The Enchanted Chamber (accessible via Secret Study)",
+            "description": "Magic permeates the air in the Enchanted Chamber, filled with otherworldly plants and glowing stones. The only exit is north back to The Secret Study.",
+            "image": "enchanted_chamber.jpg",
+            "items": [
+                {"name": "enchanted flower", "image": "enchanted_flower.jpg"},
+                {"name": "glowing stone", "image": "glowing_stone.jpg"}
+            ],
+            "furniture": [
+                {"name": "magic circle", "image": "magic_circle.jpg"},
+                {"name": "stone pedestal", "image": "stone_pedestal.jpg"}
+            ],
+            "options": [
+                {
+                    "description": "Go north to The Secret Study (accessible via Zen Garden).",
+                    "target": 14
+                }
+            ]
+        }
+    ]
+}
+

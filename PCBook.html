@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Grand Game Character Generator</title>
+<style>
+  body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 20px; }
+  .container { background: white; padding: 20px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+  h2 { color: #333; }
+  .form-group { margin-bottom: 1rem; }
+  label { display: block; margin-bottom: .5rem; }
+  input[type="number"], input[type="text"] { width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px; }
+  .button-container { text-align: center; margin-top: 10px; }
+  button { padding: 10px 20px; border: none; border-radius: 4px; background: #007bff; color: white; cursor: pointer; }
+  button:hover { background: #0056b3; }
+</style>
+</head>
+<body>
+    <h1 id="game-title">
+    <a href="https://thedicelady.com/AdventureGame/" title="The Grand Game">The Grand Game</a>
+</h1>
+<div class="container">
+  <h2>Character Attributes</h2>
+  <!-- Input for Vitality -->
+  <div class="form-group">
+    <label for="vitality">Vitality</label>
+    <input type="number" id="vitality" placeholder="Vitality">
+  </div>
+  <!-- Input for Endurance -->
+  <div class="form-group">
+    <label for="endurance">Endurance</label>
+    <input type="number" id="endurance" placeholder="Endurance">
+  </div>
+  <!-- Input for Agility -->
+  <div class="form-group">
+    <label for="agility">Agility</label>
+    <input type="number" id="agility" placeholder="Agility">
+  </div>
+  <!-- Input for Insight -->
+  <div class="form-group">
+    <label for="insight">Insight</label>
+    <input type="number" id="insight" placeholder="Insight">
+  </div>
+  <!-- Input for Harmony -->
+  <div class="form-group">
+    <label for="harmony">Harmony</label>
+    <input type="number" id="harmony" placeholder="Harmony">
+  </div>
+  <!-- Input for Focus -->
+  <div class="form-group">
+    <label for="focus">Focus</label>
+    <input type="number" id="focus" placeholder="Focus">
+  </div>
+  <!-- Input for Willpower -->
+  <div class="form-group">
+    <label for="willpower">Willpower</label>
+    <input type="number" id="willpower" placeholder="Willpower">
+  </div>
+  <!-- Repeat for other attributes -->
+
+  <div class="button-container">
+    <button onclick="randomizeAttributes()">Randomize Attributes</button>
+    <button onclick="calculateStats()">Calculate Stats</button>
+  </div>
+
+  <h2>Derived Stats</h2>
+  <!-- Display for Health Points (HP) -->
+  <div class="form-group">
+    <label for="hp">Health Points (HP)</label>
+    <input type="text" id="hp" placeholder="Health Points" readonly>
+  </div>
+  <!-- Display for Stamina Points (SP) -->
+  <div class="form-group">
+    <label for="sp">Stamina Points (SP)</label>
+    <input type="text" id="sp" placeholder="Stamina Points" readonly>
+  </div>
+  <!-- Display for Mana Points (MP) -->
+  <div class="form-group">
+    <label for="mp">Mana Points (MP)</label>
+    <input type="text" id="mp" placeholder="Mana Points" readonly>
+  </div>
+  <!-- Display for Focus Points (FP) -->
+  <div class="form-group">
+    <label for="fp">Focus Points (FP)</label>
+    <input type="text" id="fp" placeholder="Focus Points" readonly>
+  </div>
+  <!-- Repeat for other derived stats -->
+
+</div>
+
+<script>
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function randomizeAttributes() {
+  let attributeIds = ['vitality', 'endurance', 'agility', 'insight', 'harmony', 'focus', 'willpower' /*, other attribute IDs */];
+  attributeIds.forEach(id => {
+    document.getElementById(id).value = getRandomInt(1, 100); // Random number between 1 and 100
+  });
+  calculateStats();
+}
+
+function calculateStats() {
+  // Retrieve attribute values or default to 0 if not set
+  let vitality = parseInt(document.getElementById('vitality').value) || 0;
+  let endurance = parseInt(document.getElementById('endurance').value) || 0;
+  let agility = parseInt(document.getElementById('agility').value) || 0;
+  let insight = parseInt(document.getElementById('insight').value) || 0;
+  let harmony = parseInt(document.getElementById('harmony').value) || 0;
+  let focus = parseInt(document.getElementById('focus').value) || 0;
+  let willpower = parseInt(document.getElementById('willpower').value) || 0;
+  // Repeat for other attributes if needed
+  
+  // Calculate derived stats
+  let hp = vitality * 10; // Example: HP is 10 times the vitality
+  let sp = (endurance + agility) * 5; // Example: SP is the sum of endurance and agility times 5
+  let mp = (insight + harmony) * 8; // Example: MP is the sum of insight and harmony times 8
+  let fp = (focus + willpower) * 7; // Example: FP is the sum of focus and willpower times 7
+  // Repeat for other derived stats calculations if needed
+
+  // Set derived stats in the inputs
+  document.getElementById('hp').value = hp;
+  document.getElementById('sp').value = sp;
+  document.getElementById('mp').value = mp;
+  document.getElementById('fp').value = fp;
+  // Repeat for other derived stats display if needed
+}
+</script>
+
+</body>
+</html>

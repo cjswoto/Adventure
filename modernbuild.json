@@ -1,0 +1,90 @@
+{
+  "scenes": [
+    {
+      "name": "The Azure Lounge",
+      "description": "A lavish room with azure draperies and plush seating, suffused with a gentle light from a crystal chandelier.",
+      "image": "azure_lounge.jpg",
+      "items": [
+        {"name": "ornate key", "image": "ornate_key.jpg"},
+        {"name": "goblet", "image": "goblet.jpg"}
+      ],
+      "furniture": [
+        {"name": "chaise lounge", "image": "chaise_lounge.jpg"},
+        {"name": "bookshelf", "image": "bookshelf.jpg"}
+      ],
+      "options": [
+        {
+          "description": "Move east to The Grand Library.",
+          "target": 1
+        },
+        {
+          "description": "Move south to The Conservatory.",
+          "target": 4
+        }
+      ]
+    },
+    {
+      "name": "The Grand Library",
+      "description": "Walls lined with ancient tomes, the scent of leather and paper pervades this quiet sanctuary of knowledge.",
+      "image": "grand_library.jpg",
+      "items": [
+        {"name": "leather-bound book", "image": "leather_book.jpg"},
+        {"name": "quill", "image": "quill.jpg"}
+      ],
+      "furniture": [
+        {"name": "reading table", "image": "reading_table.jpg"},
+        {"name": "armchair", "image": "armchair.jpg"}
+      ],
+      "options": [
+        {
+          "description": "Move west to The Azure Lounge.",
+          "target": 0
+        },
+        {
+          "description": "Move south to The Dining Hall.",
+          "target": 5
+        }
+      ]
+    },
+    {
+      "name": "The Silent Gallery",
+      "description": "This room is an art lover's haven, with paintings from floor to ceiling, some seemingly watching you.",
+      "image": "silent_gallery.jpg",
+      "items": [
+        {"name": "sculpture", "image": "sculpture.jpg"},
+        {"name": "paint palette", "image": "palette.jpg"}
+      ],
+      "furniture": [
+        {"name": "velvet rope", "image": "velvet_rope.jpg"},
+        {"name": "easel", "image": "easel.jpg"}
+      ],
+      "options": [
+        {
+          "description": "Move south to The Game Room.",
+          "target": 6
+        }
+      ]
+    },
+    // ... continued for other rooms ...
+
+    {
+      "name": "The Enchanted Chamber",
+      "description": "An ethereal glow fills this room, with arcane symbols etched into the walls and a mysterious air that hangs heavy.",
+      "image": "enchanted_chamber.jpg",
+      "items": [
+        {"name": "crystal ball", "image": "crystal_ball.jpg"},
+        {"name": "magic wand", "image": "wand.jpg"}
+      ],
+      "furniture": [
+        {"name": "altar", "image": "altar.jpg"},
+        {"name": "throne", "image": "throne.jpg"}
+      ],
+      "options": [
+        {
+          "description": "Move north to The Secret Study.",
+          "target": 14
+        }
+      ]
+    }
+  ]
+}

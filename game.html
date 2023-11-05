@@ -1,0 +1,219 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Adventure Game</title>
+    <link rel="stylesheet" href="style.css">
+
+
+</head>
+<body>
+
+    <div id="game-container">
+<h1 id="game-title">
+    <a href="https://thedicelady.com/AdventureGame/" title="The Grand Game">The Grand Game</a>
+</h1>
+        
+                <select id="adventure-select">
+            <!-- Options will be loaded here by JavaScript -->
+        </select>
+        <h1 id="scene-name"></h1>
+        <img id="scene-image" class="image-container" src="" alt="Scene Image" style="max-width: 100%;">
+        <p id="scene-description"></p>
+        <h2>Contents</h2>
+        <div id="item-container"></div>
+        <div id="furniture-container"></div>     
+
+        <div id="inventory-container">
+            <h2>Inventory</h2>
+            <div id="inventory-items"></div>
+        </div>
+        <h2>Location Options</h2>
+        <div id="option-buttons-container"></div>
+    </div>
+
+    <script>
+        let currentScene = 0;
+        let playerInventory = [];
+        let scenes = [];
+
+        fetch("building.json")
+            .then(response => response.json())
+            .then(data => {
+                scenes = data.scenes;
+                showScene(currentScene);
+            });
+
+
+// Function to populate the dropdown with file names
+        function populateDropdown(fileNames) {
+            const select = document.getElementById('adventure-select');
+            fileNames.forEach(fileName => {
+                const option = document.createElement('option');
+                option.value = option.textContent = fileName;
+                select.appendChild(option);
+            });
+        }
+
+        // Function to load the selected adventure file
+        function loadAdventure(adventureFile) {
+            fetch(adventureFile)
+                .then(response => response.json())
+                .then(data => {
+                    scenes = data.scenes;
+                    showScene(currentScene);
+                });
+        }
+
+        // Event listener for when the user selects an adventure file
+        document.getElementById('adventure-select').addEventListener('change', function() {
+            loadAdventure(this.value);
+        });
+
+        // Ajax call to get the list of JSON files
+        function getAdventureFiles() {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', 'list_json_files.php', true); // Assuming 'list_json_files.php' is the PHP script that returns the file names
+            xhr.onload = function() {
+                if (this.status == 200) {
+                    const fileNames = JSON.parse(this.responseText);
+                    populateDropdown(fileNames);
+                    if (fileNames.length > 0) {
+                        loadAdventure(fileNames[0]); // Load the first adventure by default
+                    }
+                }
+            };
+            xhr.send();
+        }
+
+        // Call the function to start the process
+        getAdventureFiles();
+
+        function showScene(sceneIndex) {
+            currentScene = sceneIndex;
+            const scene = scenes[sceneIndex];
+            document.getElementById("scene-name").textContent = scene.name;
+            document.getElementById("scene-description").textContent = scene.description;
+            document.getElementById("scene-image").src = scene.image;
+            showItems(scene.items);
+            showFurniture(scene.furniture);
+            showInventory();
+            showOptions(scene.options);
+        }
+
+        function showItems(items) {
+            const itemContainer = document.getElementById("item-container");
+            itemContainer.innerHTML = "";
+            items.forEach(item => {
+                const itemButton = document.createElement("button");
+                itemButton.textContent = `Pick up ${item.name}`;
+                itemButton.addEventListener("click", () => pickUpItem(item));
+                itemContainer.appendChild(itemButton);
+                const itemImage = document.createElement("img");
+                itemImage.src = item.image;
+                itemImage.alt = item.name;
+                itemImage.style.maxWidth = "100px";
+                itemContainer.appendChild(itemImage);
+            });
+        }
+
+        function pickUpItem(item) {
+            playerInventory.push(item);
+            const scene = scenes[currentScene];
+            const itemIndex = scene.items.indexOf(item);
+            scene.items.splice(itemIndex, 1);
+            showScene(currentScene);
+        }
+                function dropItem(item) {
+            const scene = scenes[currentScene];
+            scene.items.push(item);
+            const itemIndex = playerInventory.indexOf(item);
+            playerInventory.splice(itemIndex, 1);
+            showScene(currentScene);
+        }
+
+        function showFurniture(furniture) {
+            const furnitureContainer = document.getElementById("furniture-container");
+            furnitureContainer.innerHTML = "";
+            furniture.forEach(piece => {
+                const furnitureButton = document.createElement("button");
+                furnitureButton.textContent = `Move ${piece.name}`;
+                furnitureButton.addEventListener("click", () => moveFurniture(piece));
+                furnitureContainer.appendChild(furnitureButton);
+                const furnitureImage = document.createElement("img");
+                furnitureImage.src = piece.image;
+                furnitureImage.alt = piece.name;
+                furnitureImage.style.maxWidth = "100px";
+                furnitureContainer.appendChild(furnitureImage);
+            });
+        }
+
+        function moveFurniture(piece) {
+            alert(`You moved the ${piece.name}.`);
+        }
+
+        function showInventory() {
+            const inventoryContainer = document.getElementById("inventory-items");
+            inventoryContainer.innerHTML = "";
+            playerInventory.forEach(item => {
+                            const itemImage = document.createElement("img");
+                itemImage.src = item.image;
+                itemImage.alt = item.name;
+                itemImage.style.maxWidth = "100px";
+                const itemButton = document.createElement("button");
+                itemButton.textContent = `Use ${item.name}`;
+                itemButton.addEventListener("click", () => useItem(item));
+                inventoryContainer.appendChild(itemButton);
+
+                inventoryContainer.appendChild(itemImage);
+                const ditemButton = document.createElement("button");
+                ditemButton.textContent = `Drop ${item.name}`;
+                ditemButton.addEventListener("click", () => dropItem(item));
+                inventoryContainer.appendChild(ditemButton);
+            });
+        }
+        function dropItem(item) {
+            const scene = scenes[currentScene];
+            scene.items.push(item);
+            const itemIndex = playerInventory.indexOf(item);
+            playerInventory.splice(itemIndex, 1);
+            showScene(currentScene);
+        }
+         function useItem(item) {
+            // Display the name of the item used
+            alert(`You used the ${item.name}.`);
+            
+        
+            if (item.use && item.use.description && item.use.function) {
+                // Display the use description of the item
+                alert(item.use.description);
+                
+                try {
+                    // Attempt to call the specified function
+                    window[item.use.function](); // Assuming the function is a global function
+                } catch (error) {
+                    // Catch any error that occurs during the function call and display an error message
+                    alert(`An error occurred while trying to use the item: ${error.message}`);
+                }
+            } else {
+        
+                alert(`The ${item.name} cant be used in this way.`);
+            }
+        }
+
+
+        function showOptions(options) {
+            const optionButtonsContainer = document.getElementById("option-buttons-container");
+            optionButtonsContainer.innerHTML = "";
+            options.forEach(option => {
+                const optionButton = document.createElement("button");
+                optionButton.textContent = option.description;
+                optionButton.addEventListener("click", () => showScene(option.target));
+                optionButtonsContainer.appendChild(optionButton);
+            });
+        }
+    </script>
+</body>
+</html>

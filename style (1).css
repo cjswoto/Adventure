@@ -1,0 +1,202 @@
+    body {
+            font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+            background-image: url("background.png");
+            background-size: cover;
+            background-attachment: fixed;
+            color: #f5f5f5;
+            padding: 50px;
+            cursor: url("cursor.png"), auto;
+        }
+
+        #game-container {
+            max-width: 800px;
+            margin: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            border: 5px solid #f39c12;
+            border-radius: 25px;
+            padding: 40px;
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 5px #f39c12;
+            }
+            50% {
+                box-shadow: 0 0 20px #f39c12, 0 0 30px #f39c12;
+            }
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #e74c3c;
+            text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        p {
+            font-size: 1.2em;
+            line-height: 1.5em;
+            color: #ecf0f1;
+        }
+
+        #inventory-container,
+        #item-container,
+        #furniture-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .inventory-items,
+        .item-buttons,
+        .furniture-buttons {
+            text-align: center;
+        }
+
+        button {
+            background-color: #3498db;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            transition-duration: 0.4s;
+            cursor: url("cursor.png"), auto;
+            border-radius: 12px;
+            animation: bounce 2s infinite;
+        }
+
+     
+        button:hover {
+            background-color: white;
+            color: black;
+            border: 2px solid #3498db;
+        }
+
+        scene-image {
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            transition: transform 0.5s ease;
+        }
+
+        img:hover {
+            transform: rotate(360deg);
+        }
+          #game-title {
+            text-align: center;
+            font-size: 4em;
+            color: #e74c3c;
+            text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+            margin-top: 0;
+            margin-bottom: 0.5em;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        #game-title a {
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+        }
+
+        #game-title a:hover, #game-title a:focus {
+            text-decoration: underline;
+        }
+
+
+/* Additional styles to cover the form and json output elements */
+form {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 15px;
+    border: 3px solid #f39c12;
+}
+
+#jsonOutput {
+    background: rgba(0, 0, 0, 0.7);
+    color: #ecf0f1;
+    padding: 20px;
+    border-radius: 15px;
+    border: 3px solid #f39c12;
+    margin-top: 20px;
+    white-space: pre-wrap;
+}
+
+.item, .furniture, .option {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    color: #ecf0f1;
+}
+
+h2 {
+    color: #f1c40f;
+    margin-bottom: 10px;
+}
+          #game-title {
+            text-align: center;
+            font-size: 4em;
+            color: #e74c3c;
+            text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+            margin-top: 0;
+            margin-bottom: 0.5em;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        #game-title a {
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+        }
+
+        #game-title a:hover, #game-title a:focus {
+            text-decoration: underline;
+        }
+
+
+h1, h2 {
+    color: #e74c3c;
+    text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+p {
+    font-size: 1.2em;
+    line-height: 1.5em;
+    color: #ecf0f1;
+}
+
+#links ul {
+    list-style: none;
+    padding: 0;
+}
+
+#links li {
+    margin-bottom: 10px;
+}
+
+#links a {
+    background-color: #3498db;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    border-radius: 12px;
+    transition-duration: 0.4s;
+    cursor: url("cursor.png"), auto;
+}
+
+#links a:hover {
+    background-color: white;
+    color: black;
+    border: 2px solid #3498db;
+}
