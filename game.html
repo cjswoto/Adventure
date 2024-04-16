@@ -13,7 +13,7 @@
 
     <div id="game-container">
 <h1 id="game-title">
-    <a href="https://thedicelady.com/AdventureGame/" title="The Grand Game">The Grand Game</a>
+    <a href="http://thegrandgame.rf.gd/" title="The Grand Game">The Grand Game</a>
 </h1>
         
                 <select id="adventure-select">
@@ -91,33 +91,64 @@
         // Call the function to start the process
         getAdventureFiles();
 
-        function showScene(sceneIndex) {
-            currentScene = sceneIndex;
-            const scene = scenes[sceneIndex];
-            document.getElementById("scene-name").textContent = scene.name;
-            document.getElementById("scene-description").textContent = scene.description;
-            document.getElementById("scene-image").src = scene.image;
-            showItems(scene.items);
-            showFurniture(scene.furniture);
-            showInventory();
-            showOptions(scene.options);
-        }
+		function showScene(sceneIndex) {
+			currentScene = sceneIndex;
+			const scene = scenes[sceneIndex];
 
-        function showItems(items) {
-            const itemContainer = document.getElementById("item-container");
-            itemContainer.innerHTML = "";
-            items.forEach(item => {
-                const itemButton = document.createElement("button");
-                itemButton.textContent = `Pick up ${item.name}`;
-                itemButton.addEventListener("click", () => pickUpItem(item));
-                itemContainer.appendChild(itemButton);
-                const itemImage = document.createElement("img");
-                itemImage.src = item.image;
-                itemImage.alt = item.name;
-                itemImage.style.maxWidth = "100px";
-                itemContainer.appendChild(itemImage);
-            });
-        }
+			// Update scene name and description
+			document.getElementById("scene-name").textContent = scene.name;
+			document.getElementById("scene-description").textContent = scene.description;
+
+			// Handle scene image with error handling
+			const sceneImage = document.getElementById("scene-image");
+			sceneImage.onerror = () => {
+				// Option 1: Hide the image if it fails to load
+				sceneImage.style.display = "none";
+
+				// Option 2: Replace with a default placeholder image
+				// sceneImage.src = "path/to/default-placeholder.png";
+			};
+			sceneImage.onload = () => {
+				// Ensure the image is displayed if it loads successfully
+				sceneImage.style.display = "block";
+			};
+			sceneImage.src = scene.image; // This will trigger the onload or onerror event
+
+			// Display items, furniture, inventory, and options associated with the scene
+			showItems(scene.items);
+			showFurniture(scene.furniture);
+			showInventory();
+			showOptions(scene.options);
+		}
+
+
+		function showItems(items) {
+			const itemContainer = document.getElementById("item-container");
+			itemContainer.innerHTML = "";
+			items.forEach(item => {
+				const itemButton = document.createElement("button");
+				itemButton.textContent = `Pick up ${item.name}`;
+				itemButton.addEventListener("click", () => pickUpItem(item));
+				itemContainer.appendChild(itemButton);
+
+				const itemImage = document.createElement("img");
+				itemImage.src = item.image;
+				itemImage.alt = item.name;
+				itemImage.style.maxWidth = "100px";
+				
+				// Error handler for the image
+				itemImage.onerror = () => {
+					// Option 1: Hide the image if it fails to load
+					itemImage.style.display = "none";
+
+					// Option 2: Replace with a default placeholder image
+					// itemImage.src = "path/to/default-placeholder.png";
+				};
+
+				itemContainer.appendChild(itemImage);
+			});
+		}
+
 
         function pickUpItem(item) {
             playerInventory.push(item);
@@ -134,21 +165,33 @@
             showScene(currentScene);
         }
 
-        function showFurniture(furniture) {
-            const furnitureContainer = document.getElementById("furniture-container");
-            furnitureContainer.innerHTML = "";
-            furniture.forEach(piece => {
-                const furnitureButton = document.createElement("button");
-                furnitureButton.textContent = `Move ${piece.name}`;
-                furnitureButton.addEventListener("click", () => moveFurniture(piece));
-                furnitureContainer.appendChild(furnitureButton);
-                const furnitureImage = document.createElement("img");
-                furnitureImage.src = piece.image;
-                furnitureImage.alt = piece.name;
-                furnitureImage.style.maxWidth = "100px";
-                furnitureContainer.appendChild(furnitureImage);
-            });
-        }
+		function showFurniture(furniture) {
+			const furnitureContainer = document.getElementById("furniture-container");
+			furnitureContainer.innerHTML = "";
+
+			furniture.forEach(piece => {
+				const furnitureButton = document.createElement("button");
+				furnitureButton.textContent = `Move ${piece.name}`;
+				furnitureButton.addEventListener("click", () => moveFurniture(piece));
+				furnitureContainer.appendChild(furnitureButton);
+
+				const furnitureImage = document.createElement("img");
+				furnitureImage.src = piece.image;
+				furnitureImage.alt = piece.name;
+				furnitureImage.style.maxWidth = "100px";
+				
+				// Error handler for the image
+				furnitureImage.onerror = () => {
+					// Option 1: Hide the image if it fails to load
+					furnitureImage.style.display = "none";
+
+					// Option 2: Replace with a default placeholder image
+					// furnitureImage.src = "path/to/default-placeholder.png";
+				};
+
+				furnitureContainer.appendChild(furnitureImage);
+			});
+		}
 
         function moveFurniture(piece) {
             alert(`You moved the ${piece.name}.`);

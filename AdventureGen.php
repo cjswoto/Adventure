@@ -255,7 +255,7 @@ p {
        <div id="game-container">
     <!-- Place this within your <body> tag, at the top -->
 <h1 id="game-title">
-    <a href="https://thedicelady.com/AdventureGame/" title="The Grand Game">The Grand Game</a>
+    <a href="http://thegrandgame.rf.gd/" title="The Grand Game">The Grand Game</a>
 </h1>
 
 
